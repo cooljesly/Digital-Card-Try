@@ -43,11 +43,11 @@
         .card-logo { width: 160px; margin-top: -30px; object-fit: contain; }
         .profile-container { position: relative; width: 110px; height: 110px; margin: -55px auto 20px; z-index: 5; display: none; }
         .profile-main { width: 100%; height: 100%; border-radius: 50%; border: 5px solid white; background: #e0e0e0; object-fit: cover; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
-        .card-content { padding: 0 25px 25px; text-align: center; flex-grow: 1; }
+        .card-content { padding: 0 25px 0; text-align: center; flex-grow: 1; } /* Removed bottom padding here */
         .no-photo .name-display { margin-top: 60px; }
         .name-display { color: var(--quad-red); font-size: 1.8rem; font-weight: 700; margin-bottom: 8px; }
         .title-display { color: #444; font-size: 1.1rem; margin-bottom: 25px; }
-        .icon-row-container { display: flex; justify-content: center; gap: 15px; border-top: 1px solid #eee; padding-top: 20px; }
+        .icon-row-container { display: flex; justify-content: center; gap: 15px; border-top: 1px solid #eee; padding-top: 20px; margin-bottom: 30px; } /* Fixed 30px gap below icons */
         .contact-icon-btn { display: none; width: 40px; height: 40px; }
         .contact-icon-btn img { width: 100%; height: 100%; }
 
@@ -57,10 +57,10 @@
         .view-mode .main-container { height: 100vh; display: flex !important; align-items: center; justify-content: center; padding: 10px; margin: 0; }
         .view-mode .preview-side { width: 100%; max-width: 450px; padding: 0; display: flex; justify-content: center; }
         .view-mode .phone-mockup { width: 100%; height: auto; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.08); border: 1px solid #ddd; position: relative; overflow: hidden; background: white; }
-        .view-mode .add-btn { margin-top: 40px; padding-bottom: 20px; }
+        .view-mode .add-btn { margin-top: 0; padding-bottom: 20px; }
 
         /* Buttons */
-        .add-btn { width: 100%; padding: 20px; background: var(--quad-red); color: white; border: none; font-weight: bold; cursor: pointer; font-size: 1.1rem; margin-top: auto; }
+        .add-btn { width: 100%; padding: 20px; background: var(--quad-red); color: white; border: none; font-weight: bold; cursor: pointer; font-size: 1.1rem; margin-top: auto; display: flex; justify-content: center; align-items: center; text-align: center; } /* Centered text */
         .nav-btn { width: 100%; padding: 14px; border-radius: 8px; border: none; cursor: pointer; font-weight: bold; margin-top: 10px; font-size: 1rem; }
         .primary { background: #000; color: white; }
         .secondary { background: #e0e0e0; color: #333; }
@@ -314,7 +314,6 @@
 
     function generateVCard() {
         const urlParams = new URLSearchParams(window.location.search);
-        // Use URL params if in scan mode, else use form values
         const n = urlParams.get('n') || document.getElementById('in-name').value || "Contact";
         const t = urlParams.get('t') || document.getElementById('in-title').value || "";
         const p = urlParams.get('p') || document.getElementById('in-phone').value || "";
