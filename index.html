@@ -40,18 +40,18 @@ input[type="text"], input[type="email"], select { width: 100%; padding: 12px; bo
 .preview-side { flex: 0.8; display: flex; justify-content: center; align-items: flex-start; padding-top: 20px; }
 .phone-mockup { width: 350px; background: white; border-radius: 30px; box-shadow: 0 20px 50px rgba(0,0,0,0.1); overflow-y: auto; position: sticky; top: 20px; display: flex; flex-direction: column; border: 1px solid transparent; }
 
-/* Dynamic Header Alignment based on Reference Image */
+/* Fixed Header Alignment for exact match with reference */
 .card-header { 
     height: 160px; 
-    background: #f0f0f0; 
+    background: #f0f4f9; /* Match the light tint in reference */
     display: flex; 
     justify-content: center; 
-    align-items: flex-start; /* Aligned to top like reference */
-    padding: 30px 25px 0; 
+    align-items: center; /* Vertically centered */
+    padding: 0 25px 40px; /* Padding bottom to account for profile pic overlap */
     box-sizing: border-box;
 }
-.card-logo { width: 160px; object-fit: contain; transition: 0.3s; }
-.secondary-logo { width: 100px; object-fit: contain; display: none; }
+.card-logo { width: 150px; object-fit: contain; }
+.secondary-logo { width: 90px; object-fit: contain; display: none; }
 
 .profile-container { position: relative; width: 110px; height: 110px; margin: -55px auto 20px; z-index: 5; display: none; }
 .profile-main { width: 100%; height: 100%; border-radius: 50%; border: 5px solid white; background: #e0e0e0; object-fit: cover; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
@@ -190,7 +190,7 @@ input[type="text"], input[type="email"], select { width: 100%; padding: 12px; bo
 
 <script>
 const BRANDS = {
-quadrangle: { color: '#a31212', logo: 'Quadrangle.svg', logoWidth: '130px', specialLayout: true },
+quadrangle: { color: '#a31212', logo: 'Quadrangle.svg', logoWidth: '140px', secondaryLogoWidth: '85px', specialLayout: true },
 naukri: { color: '#1f70e0', logo: 'Naukri.svg', logoWidth: '160px' },
 naukrigulf: { color: '#008b45', logo: 'Naukrigulf.svg', logoWidth: '160px' },
 shiksha: { color: '#007a83', logo: 'Shiksha.svg', logoWidth: '160px' },
@@ -221,25 +221,19 @@ function updateBrand(brandId) {
     logoQR.style.width = b.logoWidth;
 
     if (b.specialLayout) {
-        // Quadrangle Layout: Infoedge left, Quadrangle right (Aligned with Top)
+        // Quadrangle Layout: Balanced alignment
         header.style.justifyContent = "space-between";
-        header.style.alignItems = "flex-start";
         headerQR.style.justifyContent = "space-between";
-        headerQR.style.alignItems = "flex-start";
         logoSec.style.display = "block";
         logoSecQR.style.display = "block";
-        logoMain.style.marginTop = "0"; // Reset margin-top for side-by-side
-        logoQR.style.marginTop = "0";
+        logoSec.style.width = b.secondaryLogoWidth;
+        logoSecQR.style.width = b.secondaryLogoWidth;
     } else {
         // Standard Layout: Centered
         header.style.justifyContent = "center";
-        header.style.alignItems = "center";
         headerQR.style.justifyContent = "center";
-        headerQR.style.alignItems = "center";
         logoSec.style.display = "none";
         logoSecQR.style.display = "none";
-        logoMain.style.marginTop = "-30px";
-        logoQR.style.marginTop = "-30px";
     }
 }
 
